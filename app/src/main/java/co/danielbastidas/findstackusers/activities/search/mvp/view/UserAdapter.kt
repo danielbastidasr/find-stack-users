@@ -23,7 +23,7 @@ class UserAdapter(private val observeClickDetailUser: PublishSubject<StackUser>)
 
 
     override fun onBindViewHolder(holder: UserHolder, position: Int) {
-        holder.tvUserId.text = ""+users[position].userId
+        holder.tvUserReputation.text = ""+users[position].reputation
         holder.tvUserName.text = users[position].displayName
     }
 
@@ -35,8 +35,8 @@ class UserAdapter(private val observeClickDetailUser: PublishSubject<StackUser>)
 
     inner class UserHolder(val view:View):RecyclerView.ViewHolder(view) {
 
-        val tvUserId:TextView = view.findViewById(R.id.card_user_name)
-        val tvUserName:TextView = view.findViewById(R.id.card_user_id)
+        val tvUserName:TextView = view.findViewById(R.id.card_user_name)
+        val tvUserReputation:TextView = view.findViewById(R.id.card_user_reputation)
 
         init {
             view.setOnClickListener {

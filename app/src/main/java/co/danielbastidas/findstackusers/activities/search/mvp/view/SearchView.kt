@@ -16,7 +16,7 @@ import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 
 @SuppressLint("ViewConstructor")
-class SearchView(private val activity: SearchActivity): FrameLayout(activity) {
+open class SearchView(private val activity: SearchActivity): FrameLayout(activity) {
 
     private val userAdapter:UserAdapter
 
@@ -24,8 +24,8 @@ class SearchView(private val activity: SearchActivity): FrameLayout(activity) {
     private val buttonSearch:Button
     private val userInput:EditText
 
-    val observeClickDetailUser:PublishSubject<StackUser>
-    val observeButtonSearch:Observable<Any>
+    private val observeClickDetailUser:PublishSubject<StackUser>
+    private val observeButtonSearch:Observable<Any>
 
 
     init {
@@ -45,32 +45,40 @@ class SearchView(private val activity: SearchActivity): FrameLayout(activity) {
         setUpRecyclerView()
     }
 
-    fun getUserNameTyped():String =
+    open fun getUserNameTyped():String =
             userInput.text.toString()
 
-    fun navigateToUserDetail(user:StackUser) =
+    open fun navigateToUserDetail(user:StackUser) =
             activity.navigator.navigateToUserDetail(activity,user)
 
 
-    fun setUsersList(users:List<StackUser>) =
+    open fun setUsersList(users:List<StackUser>) =
             userAdapter.setUsers(users)
 
-    fun setSearchButtonNotClickable(){
+    open fun setSearchButtonNotClickable(){
 
         buttonSearch.isClickable = false
         buttonSearch.setBackgroundColor(ContextCompat.getColor(context, R.color.material_grey_300))
         buttonSearch.text = resources.getText(R.string.button_search_not_clickable)
     }
 
-    fun setSearchButtonClickable(){
+    open fun setSearchButtonClickable(){
 
         buttonSearch.isClickable = true
         buttonSearch.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary))
         buttonSearch.text = resources.getText(R.string.button_search_clickable)
     }
 
-    fun setSearchName(name:String){
+    open fun setSearchName(name:String){
         userInput.setText(name)
+    }
+
+    open fun getObservableClickDetailUser():PublishSubject<StackUser>{
+        return observeClickDetailUser
+    }
+
+    open fun getObservableClickSearchUser():Observable<Any>{
+        return observeButtonSearch
     }
 
     private fun setUpRecyclerView(){

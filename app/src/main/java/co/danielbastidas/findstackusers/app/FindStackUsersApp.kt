@@ -9,7 +9,6 @@ import co.danielbastidas.findstackusers.activities.userdetail.UserDetailActivity
 import co.danielbastidas.findstackusers.activities.userdetail.UserDetailComponent
 import co.danielbastidas.findstackusers.activities.userdetail.UserDetailModule
 import co.danielbastidas.findstackusers.app.api.APIModule
-import co.danielbastidas.findstackusers.app.api.PicassoModule
 import co.danielbastidas.findstackusers.app.api.model.StackUser
 
 

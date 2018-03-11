@@ -13,7 +13,7 @@ import io.reactivex.schedulers.Schedulers
 import java.util.ArrayList
 
 
-class SearchModel(private val stackClient: StackClient, private val activity: SearchActivity) {
+open class SearchModel(private val stackClient: StackClient, private val activity: SearchActivity) {
 
     var currentName:String = ""
     private var users : List<StackUser> = ArrayList<StackUser>()
@@ -25,7 +25,7 @@ class SearchModel(private val stackClient: StackClient, private val activity: Se
     }
 
     /*GET USERS FROM API*/
-    fun getListUsersWithName(name:String):Observable<List<StackUser>>{
+    open fun getListUsersWithName(name:String):Observable<List<StackUser>>{
 
         if (currentName != name){
 
@@ -46,7 +46,7 @@ class SearchModel(private val stackClient: StackClient, private val activity: Se
     }
 
     /*SAVE MODEL STATE IN BUNDLE */
-    fun saveEventsState(list: List<StackUser>) {
+    open fun saveEventsState(list: List<StackUser>) {
 
         reactiveSaveState.updateSaveState(activity, object : BundleAction {
             override fun call(bundle: Bundle) {
@@ -59,18 +59,9 @@ class SearchModel(private val stackClient: StackClient, private val activity: Se
 
     }
 
-    /*GET MODEL STATE FROM THE BUNDLE */
-     private fun areUsersInSaveState(): Maybe<List<StackUser>> {
-        return reactiveSaveState.getSavedState(activity).map { bundle ->
-            currentName = bundle.getString(BUNDLE_NAME)
-            users = bundle.getParcelableArrayList(BUNDLE_LIST)
-            users
-        }
-    }
-
 
     /*INI MODEL STATE */
-    fun getUsersFromSaveState(): Single<List<StackUser>> {
+    open fun getUsersFromSaveState(): Single<List<StackUser>> {
         return areUsersInSaveState()
                 .isEmpty.flatMap {
             _ ->
@@ -78,4 +69,12 @@ class SearchModel(private val stackClient: StackClient, private val activity: Se
         }
     }
 
+    /*GET MODEL STATE FROM THE BUNDLE */
+    private fun areUsersInSaveState(): Maybe<List<StackUser>> {
+        return reactiveSaveState.getSavedState(activity).map { bundle ->
+            currentName = bundle.getString(BUNDLE_NAME)
+            users = bundle.getParcelableArrayList(BUNDLE_LIST)
+            users
+        }
+    }
 }

@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin"
             android:layout_marginRight="@dimen/margin"
-            android:id="@+id/card_user_id"
+            android:id="@+id/card_user_reputation"
             android:layout_gravity="center"
             android:textSize="13dp"
             android:textColor="#000"

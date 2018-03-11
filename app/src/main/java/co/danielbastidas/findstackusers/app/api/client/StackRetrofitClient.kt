@@ -9,6 +9,8 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import com.google.gson.JsonDeserializer
 import java.util.*
+import java.util.concurrent.TimeUnit
+
 
 
 internal class StackRetrofitClient(baseURL:String) {

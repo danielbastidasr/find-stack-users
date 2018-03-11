@@ -1,6 +1,7 @@
 package co.danielbastidas.findstackusers.activities.search.mvp
 
 
+
 import android.util.Log
 import co.danielbastidas.findstackusers.activities.search.mvp.view.SearchView
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -14,30 +15,34 @@ class SearchPresenter(private val view: SearchView, private val model: SearchMod
     private val disposables = CompositeDisposable()
 
 
-    fun onCreate(){
+    open fun onCreate(){
         subscribe(getIniState())
         subscribe(observeSearchButton())
         subscribe(observeUserDetail())
     }
 
 
-    fun onDestroy(){
+    open fun onDestroy(){
         disposables.clear()
     }
 
-    private fun observeSearchButton():Disposable{
-        return view.observeButtonSearch
+    open fun observeSearchButton():Disposable{
+        return view.getObservableClickSearchUser()
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext {
                     view.setSearchButtonNotClickable()
                 }
-                .flatMap{ val name = view.getUserNameTyped()
+                .flatMap{
+                            val name = view.getUserNameTyped()
 
                     model.getListUsersWithName(name)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .doOnEach {
-                                view.setSearchButtonClickable()
+
+                                if(it.isOnComplete) {
+                                    view.setSearchButtonClickable()
+                                }
                             }
                 }
                 .observeOn(AndroidSchedulers.mainThread())
@@ -50,8 +55,8 @@ class SearchPresenter(private val view: SearchView, private val model: SearchMod
                 }
     }
 
-    private fun observeUserDetail():Disposable{
-        return view.observeClickDetailUser
+    open fun observeUserDetail():Disposable{
+        return view.getObservableClickDetailUser()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe{
                     user -> view.navigateToUserDetail(user)
@@ -62,7 +67,7 @@ class SearchPresenter(private val view: SearchView, private val model: SearchMod
         disposables.add(subscription)
     }
 
-    private fun getIniState():Disposable{
+    open fun getIniState():Disposable{
        return model.getUsersFromSaveState()
                .observeOn(AndroidSchedulers.mainThread())
                .subscribe{

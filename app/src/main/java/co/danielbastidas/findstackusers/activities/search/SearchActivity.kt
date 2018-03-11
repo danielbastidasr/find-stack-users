@@ -8,7 +8,7 @@ import co.danielbastidas.findstackusers.app.FindStackUsersApp
 import co.danielbastidas.findstackusers.app.Navigator
 import javax.inject.Inject
 
-class SearchActivity : AppCompatActivity() {
+open class SearchActivity : AppCompatActivity() {
 
     @Inject
     lateinit var navigator: Navigator
