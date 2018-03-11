@@ -8,6 +8,7 @@ import co.danielbastidas.findstackusers.activities.search.SearchModule
 import co.danielbastidas.findstackusers.activities.userdetail.UserDetailActivity
 import co.danielbastidas.findstackusers.activities.userdetail.UserDetailComponent
 import co.danielbastidas.findstackusers.activities.userdetail.UserDetailModule
+import co.danielbastidas.findstackusers.app.api.APIModule
 import co.danielbastidas.findstackusers.app.api.PicassoModule
 import co.danielbastidas.findstackusers.app.api.model.StackUser
 
@@ -16,6 +17,7 @@ class FindStackUsersApp: Application() {
 
     private lateinit var navigator:Navigator
     private lateinit var context:Context
+    private val baseURL = "https://api.stackexchange.com//2.2/"
 
     //SubComponents
     companion object {
@@ -38,8 +40,11 @@ class FindStackUsersApp: Application() {
         navigator = Navigator()
         context = applicationContext
 
+
+
         appComponent = DaggerAppComponent.builder()
                 .appModule(AppModule(navigator))
+                .aPIModule(APIModule(baseURL))
                 .picassoModule(PicassoModule(context))
                 .build()
 

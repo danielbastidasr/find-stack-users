@@ -3,7 +3,6 @@ package co.danielbastidas.findstackusers.activities.userdetail
 import co.danielbastidas.findstackusers.activities.userdetail.mvp.UserDetailModel
 import co.danielbastidas.findstackusers.activities.userdetail.mvp.UserDetailPresenter
 import co.danielbastidas.findstackusers.activities.userdetail.mvp.UserDetailView
-import co.danielbastidas.findstackusers.app.api.StackService
 import co.danielbastidas.findstackusers.app.api.model.StackUser
 import com.squareup.picasso.Picasso
 import dagger.Module
@@ -20,7 +19,7 @@ class UserDetailModule (private val activity: UserDetailActivity, private val us
 
     @Provides
     @UserDetailScope
-    fun model(stackService: StackService, picasso: Picasso): UserDetailModel {
+    fun model(picasso: Picasso): UserDetailModel {
         return UserDetailModel(user, picasso)
     }
 

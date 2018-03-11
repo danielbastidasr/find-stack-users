@@ -41,8 +41,6 @@ class SearchPresenter(private val view: SearchView, private val model: SearchMod
                 }
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError {
-                    //TODO: HANDLE HTTP ERROR
-                    Log.d("ERROR","DO ON ERROR "+it.message)
                     view.setSearchButtonClickable()
                 }
                 .retry()

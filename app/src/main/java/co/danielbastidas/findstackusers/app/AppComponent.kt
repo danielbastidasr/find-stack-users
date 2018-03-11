@@ -6,7 +6,7 @@ import co.danielbastidas.findstackusers.activities.userdetail.UserDetailComponen
 import co.danielbastidas.findstackusers.activities.userdetail.UserDetailModule
 import co.danielbastidas.findstackusers.app.api.APIModule
 import co.danielbastidas.findstackusers.app.api.PicassoModule
-import co.danielbastidas.findstackusers.app.api.StackService
+import co.danielbastidas.findstackusers.app.api.client.StackClient
 import com.squareup.picasso.Picasso
 import dagger.Component
 
@@ -15,7 +15,7 @@ import dagger.Component
 @Component(modules = [(AppModule::class), (APIModule::class), (PicassoModule::class)])
 interface AppComponent {
 
-    fun stackService(): StackService
+    fun stackClient(): StackClient
 
     fun navigator(): Navigator
 

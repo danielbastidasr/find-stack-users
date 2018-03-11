@@ -12,7 +12,7 @@ class UserDetailModel(val user: StackUser,  val picasso: Picasso) {
     fun getUserImageBitmap(): Single<Bitmap> = Single.create {
         try {
             if (!it.isDisposed) {
-                val bitmap: Bitmap = picasso.load(user.url).get()
+                val bitmap: Bitmap = picasso.load(user.profileImage).get()
                 it.onSuccess(bitmap)
             }
         } catch (e: Throwable) {

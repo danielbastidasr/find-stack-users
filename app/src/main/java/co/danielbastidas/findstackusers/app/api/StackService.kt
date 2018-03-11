@@ -1,5 +1,6 @@
 package co.danielbastidas.findstackusers.app.api
 
+import co.danielbastidas.findstackusers.app.api.model.PagedResponseBody
 import co.danielbastidas.findstackusers.app.api.model.StackUser
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -11,7 +12,7 @@ interface StackService {
     @GET("/users")
     fun getStackUsers(@Query("pagesize") pageSize: Int,
                       @Query("order") order: String,
-                      @Query("sort") page: String,
+                      @Query("sort") sort: String,
                       @Query("inname") name: String,
-                      @Query("site") site: String): Observable<List<StackUser>>
+                      @Query("site") site: String): Observable<PagedResponseBody<List<StackUser>>>
 }

@@ -23,8 +23,8 @@ class UserAdapter(private val observeClickDetailUser: PublishSubject<StackUser>)
 
 
     override fun onBindViewHolder(holder: UserHolder, position: Int) {
-        holder.tvUserId.text = users[position].id
-        holder.tvUserName.text = users[position].name
+        holder.tvUserId.text = ""+users[position].userId
+        holder.tvUserName.text = users[position].displayName
     }
 
     fun setUsers(listUser:List<StackUser>){
