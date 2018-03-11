@@ -1,6 +1,7 @@
 package co.danielbastidas.findstackusers.activities.userdetail.mvp
 
 import android.graphics.Bitmap
+import android.util.Log
 import co.danielbastidas.findstackusers.app.api.model.StackUser
 import com.squareup.picasso.Picasso
 import io.reactivex.Single
@@ -16,7 +17,8 @@ class UserDetailModel(val user: StackUser,  val picasso: Picasso) {
                 it.onSuccess(bitmap)
             }
         } catch (e: Throwable) {
-            it.onError(e)
+            if (!it.isDisposed)
+                it.onError(e)
         }
     }
 

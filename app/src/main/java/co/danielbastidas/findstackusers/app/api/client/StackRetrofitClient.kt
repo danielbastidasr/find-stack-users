@@ -19,7 +19,7 @@ internal class StackRetrofitClient(baseURL:String) {
         val deserializer: JsonDeserializer<Date> = JsonDeserializer<Date> {
             json, typeOfT, context ->
             if (json == null) null
-            else Date(json.asLong)
+            else Date(json.asLong*1000)
         }
 
         val gsonAdapter:Gson = GsonBuilder()

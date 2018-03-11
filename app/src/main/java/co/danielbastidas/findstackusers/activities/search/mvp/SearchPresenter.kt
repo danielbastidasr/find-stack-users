@@ -15,6 +15,7 @@ class SearchPresenter(private val view: SearchView, private val model: SearchMod
 
 
     fun onCreate(){
+        subscribe(getIniState())
         subscribe(observeSearchButton())
         subscribe(observeUserDetail())
     }
@@ -61,5 +62,13 @@ class SearchPresenter(private val view: SearchView, private val model: SearchMod
         disposables.add(subscription)
     }
 
-
+    private fun getIniState():Disposable{
+       return model.getUsersFromSaveState()
+               .observeOn(AndroidSchedulers.mainThread())
+               .subscribe{
+                   list->
+                   view.setUsersList(list)
+                   view.setSearchName(model.currentName)
+               }
+    }
 }

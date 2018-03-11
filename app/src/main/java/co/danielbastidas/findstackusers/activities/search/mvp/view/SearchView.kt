@@ -69,6 +69,9 @@ class SearchView(private val activity: SearchActivity): FrameLayout(activity) {
         buttonSearch.text = resources.getText(R.string.button_search_clickable)
     }
 
+    fun setSearchName(name:String){
+        userInput.setText(name)
+    }
 
     private fun setUpRecyclerView(){
 
