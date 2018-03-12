@@ -2,6 +2,7 @@ package co.danielbastidas.findstackusers.app
 
 import android.app.Application
 import android.content.Context
+import co.danielbastidas.findstackusers.BuildConfig
 import co.danielbastidas.findstackusers.activities.search.SearchActivity
 import co.danielbastidas.findstackusers.activities.search.SearchComponent
 import co.danielbastidas.findstackusers.activities.search.SearchModule
@@ -16,7 +17,6 @@ class FindStackUsersApp: Application() {
 
     private lateinit var navigator:Navigator
     private lateinit var context:Context
-    private val baseURL = "https://api.stackexchange.com//2.2/"
 
     //SubComponents
     companion object {
@@ -39,11 +39,9 @@ class FindStackUsersApp: Application() {
         navigator = Navigator()
         context = applicationContext
 
-
-
         appComponent = DaggerAppComponent.builder()
                 .appModule(AppModule(navigator))
-                .aPIModule(APIModule(baseURL))
+                .aPIModule(APIModule(BuildConfig.SERVER_URL))
                 .picassoModule(PicassoModule(context))
                 .build()
 

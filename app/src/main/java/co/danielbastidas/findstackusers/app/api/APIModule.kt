@@ -7,7 +7,7 @@ import dagger.Provides
 
 
 @Module
-class APIModule(val baseURL:String) {
+class APIModule(private val baseURL:String) {
 
     @AppScope
     @Provides

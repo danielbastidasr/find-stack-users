@@ -17,8 +17,6 @@ class SaveStateFragment : Fragment() {
 
     fun getState(): Bundle? {
         return if (state.isEmpty) {
-            //if the state in empty then return a null value,
-            // this matches the way the bundle passed to onCreate
             null
         } else {
             state

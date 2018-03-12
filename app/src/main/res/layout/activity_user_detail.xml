@@ -25,6 +25,7 @@
                 android:src="@drawable/ic_launcher_background"
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/margin"
+                android:contentDescription="@string/user_image"
                 android:id="@+id/ivUserImage"
                 />
 
@@ -45,8 +46,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin"
-                    android:text="Daniel Bastidas"
+                    android:layout_marginStart="@dimen/margin"
                     android:id="@+id/tvUserName"
                     />
             </LinearLayout>
@@ -68,8 +68,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Daniel Bastidas"
-                    android:layout_marginLeft="@dimen/margin"
+                    android:layout_marginStart="@dimen/margin"
                     android:id="@+id/tvUserReputation"
                     />
             </LinearLayout>
@@ -91,8 +90,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Daniel Bastidas\nBastidas\nTambien cositas"
-                    android:layout_marginLeft="@dimen/margin"
+                    android:layout_marginStart="@dimen/margin"
                     android:id="@+id/tvUserBadges"
                     />
             </LinearLayout>
@@ -113,9 +111,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Daniel Bastidas"
                     android:id="@+id/tvUserLocation"
-                    android:layout_marginLeft="@dimen/margin"
+                    android:layout_marginStart="@dimen/margin"
                     />
             </LinearLayout>
 
@@ -136,8 +133,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Daniel Bastidas"
-                    android:layout_marginLeft="@dimen/margin"
+                    android:layout_marginStart="@dimen/margin"
                     android:id="@+id/tvUserAge"
                     />
             </LinearLayout>
@@ -160,9 +156,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Daniel Bastidas"
                     android:id="@+id/tvUserCreation"
-                    android:layout_marginLeft="@dimen/margin"
+                    android:layout_marginStart="@dimen/margin"
                     />
             </LinearLayout>
 

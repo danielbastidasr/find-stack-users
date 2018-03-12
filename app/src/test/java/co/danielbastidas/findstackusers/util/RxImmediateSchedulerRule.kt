@@ -19,12 +19,9 @@ class RxImmediateSchedulerRule : TestRule {
                 RxJavaPlugins.setNewThreadSchedulerHandler { Schedulers.trampoline() }
                 RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
 
-                try {
-                    base.evaluate()
-                } finally {
-                    RxJavaPlugins.reset()
-                    RxAndroidPlugins.reset()
-                }
+                RxJavaPlugins.reset()
+                RxAndroidPlugins.reset()
+
             }
         }
     }

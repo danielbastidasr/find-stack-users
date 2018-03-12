@@ -9,7 +9,6 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import com.google.gson.JsonDeserializer
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 
 
@@ -19,7 +18,7 @@ internal class StackRetrofitClient(baseURL:String) {
 
     init {
         val deserializer: JsonDeserializer<Date> = JsonDeserializer<Date> {
-            json, typeOfT, context ->
+            json, _, _ ->
             if (json == null) null
             else Date(json.asLong*1000)
         }

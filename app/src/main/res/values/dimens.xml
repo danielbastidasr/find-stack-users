@@ -3,4 +3,5 @@
     <dimen name="margin">20dp</dimen>
     <dimen name="image_dim">150dp</dimen>
     <dimen name="user_cell">50dp</dimen>
+    <dimen name="search_bar_height">50dp</dimen>
 </resources>

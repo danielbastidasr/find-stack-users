@@ -15,16 +15,23 @@ import java.util.ArrayList
 
 open class SearchModel(private val stackClient: StackClient, private val activity: SearchActivity) {
 
-    var currentName:String = ""
-    private var users : List<StackUser> = ArrayList<StackUser>()
-    private val reactiveSaveState = ReactiveSaveState()
-
     companion object {
         const val BUNDLE_LIST = "BUNDLE_LIST"
         const val BUNDLE_NAME = "BUNDLE_NAME"
     }
 
-    /*GET USERS FROM API*/
+
+    private var currentName:String = ""
+    private var users : List<StackUser> = ArrayList<StackUser>()
+    private val reactiveSaveState = ReactiveSaveState()
+
+
+    /**
+     *  Get users calling API
+     *
+     *  @param name user name
+     *  @return List of stack users
+     */
     open fun getListUsersWithName(name:String):Observable<List<StackUser>>{
 
         if (currentName != name){
@@ -67,6 +74,11 @@ open class SearchModel(private val stackClient: StackClient, private val activit
             _ ->
             Single.just(users)
         }
+    }
+
+
+    open fun getNameFromSavedState():String{
+        return currentName
     }
 
     /*GET MODEL STATE FROM THE BUNDLE */

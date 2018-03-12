@@ -10,4 +10,6 @@
     <string name="user_creation_date">Creation Date: </string>
     <string name="button_search_not_clickable">Wait for result</string>
     <string name="button_search_clickable">Search</string>
+    <string name="age_no_available">Age not available</string>
+    <string name="user_image">User Image</string>
 </resources>

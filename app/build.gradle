@@ -20,11 +20,14 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "SERVER_URL", '"https://api.stackexchange.com//2.2/"'
+        }
+        debug{
+            buildConfigField "String", "SERVER_URL", '"https://api.stackexchange.com//2.2/"'
         }
     }
-    kapt {
-        generateStubs = true
-    }
+
 
 }
 

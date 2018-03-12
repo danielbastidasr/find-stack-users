@@ -1,68 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/margin"
+    tools:context=".activities.search.SearchActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/margin"
-    tools:context=".activities.search.SearchActivity">
-
+    android:orientation="vertical"
+    >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_height="@dimen/search_bar_height"
+        android:orientation="horizontal"
         >
-        <LinearLayout
+        <EditText
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            >
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/edit_search"
-                android:hint="@string/insert_name"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:textSize="16sp"
-                />
+            android:layout_height="match_parent"
+            android:id="@+id/edit_search"
+            android:hint="@string/insert_name"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/button_search"
-                android:layout_weight="2"
-                android:textColor="@color/colorPrimaryDark"
-                android:text="@string/search"
-                android:background="@color/colorPrimary"
-                />
-        </LinearLayout>
-
-
-        <RelativeLayout
+        <Button
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:id="@+id/list_users"
-                android:layout_height="wrap_content">
-            </android.support.v7.widget.RecyclerView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="20dp"
-                android:id="@+id/empty_list_view"
-                android:textSize="40px"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:visibility="invisible"
-                />
-        </RelativeLayout>
+            android:layout_height="match_parent"
+            android:id="@+id/button_search"
+            android:layout_weight="2"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="@string/search"
+            android:background="@color/colorPrimary"
+            />
     </LinearLayout>
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/list_users"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
+    </RelativeLayout>
+</LinearLayout>
 
-</FrameLayout>

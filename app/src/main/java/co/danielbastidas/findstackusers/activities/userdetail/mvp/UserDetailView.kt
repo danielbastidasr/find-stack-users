@@ -26,7 +26,11 @@ class UserDetailView(private val activity: UserDetailActivity):FrameLayout(activ
         tvUserReputation.text = ""+stackUser.reputation
         tvUserBadges.text = stackUser.badgeCounts.toString()
         tvUserLocation.text = stackUser.location
-        tvUserAge.text = ""+stackUser.age
+        
+        tvUserAge.text = if (stackUser.age == 0) 
+            context.getString(R.string.age_no_available) 
+        else ""+stackUser.age
+        
         tvUserCreation.text = DateFormatUtils.parseDate(stackUser.creationDate)
 
     }

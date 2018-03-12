@@ -1,7 +1,6 @@
 package co.danielbastidas.findstackusers.app
 
 import android.content.Context
-import co.danielbastidas.findstackusers.app.AppScope
 import com.squareup.picasso.Picasso
 import dagger.Module
 import dagger.Provides

@@ -12,6 +12,7 @@ import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnit
 import co.danielbastidas.findstackusers.util.RxImmediateSchedulerRule
 import io.reactivex.subjects.PublishSubject
+import org.junit.Assert
 
 
 class SearchPresenterTest{
@@ -40,7 +41,32 @@ class SearchPresenterTest{
 
 
     @Test
-    fun onGetUsers(){
+    fun onStartActivityWithSavedState(){
+
+        val name = "name"
+        //Given Saved State
+
+        Mockito.`when`(model.getUsersFromSaveState()).thenReturn(Single.just(mockUsers))
+        Mockito.`when`(model.getNameFromSavedState()).thenReturn(name)
+
+        Mockito.`when`(view.getObservableClickDetailUser()).thenReturn(PublishSubject.create())
+        Mockito.`when`(view.getUserNameTyped()).thenReturn("")
+
+        //When Activity is Lunched
+        presenter.onCreate()
+
+        //Then the following methods should be called
+        Mockito.verify<SearchView>(view, Mockito.times(1)).setUsersList(mockUsers)
+        Mockito.verify<SearchView>(view, Mockito.times(1)).setSearchName(name)
+
+        Assert.assertEquals(view.getUserNameTyped(),model.getNameFromSavedState())
+
+        //At the end we just destroy
+        presenter.onDestroy()
+    }
+
+    @Test
+    fun onClick_GetUsers(){
         val name = "name"
 
         //Given Text Input
@@ -62,6 +88,5 @@ class SearchPresenterTest{
         //At the end we just destroy
         presenter.onDestroy()
     }
-
 
 }

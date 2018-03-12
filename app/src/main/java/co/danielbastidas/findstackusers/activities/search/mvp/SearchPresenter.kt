@@ -1,8 +1,5 @@
 package co.danielbastidas.findstackusers.activities.search.mvp
 
-
-
-import android.util.Log
 import co.danielbastidas.findstackusers.activities.search.mvp.view.SearchView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -14,19 +11,18 @@ class SearchPresenter(private val view: SearchView, private val model: SearchMod
 
     private val disposables = CompositeDisposable()
 
-
-    open fun onCreate(){
+    fun onCreate(){
         subscribe(getIniState())
         subscribe(observeSearchButton())
         subscribe(observeUserDetail())
     }
 
 
-    open fun onDestroy(){
+    fun onDestroy(){
         disposables.clear()
     }
 
-    open fun observeSearchButton():Disposable{
+    private fun observeSearchButton():Disposable{
         return view.getObservableClickSearchUser()
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext {
@@ -39,7 +35,6 @@ class SearchPresenter(private val view: SearchView, private val model: SearchMod
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .doOnEach {
-
                                 if(it.isOnComplete) {
                                     view.setSearchButtonClickable()
                                 }
@@ -55,7 +50,7 @@ class SearchPresenter(private val view: SearchView, private val model: SearchMod
                 }
     }
 
-    open fun observeUserDetail():Disposable{
+    private fun observeUserDetail():Disposable{
         return view.getObservableClickDetailUser()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe{
@@ -63,17 +58,17 @@ class SearchPresenter(private val view: SearchView, private val model: SearchMod
                 }
     }
 
-    private fun subscribe(subscription: Disposable){
-        disposables.add(subscription)
-    }
-
-    open fun getIniState():Disposable{
+    private fun getIniState():Disposable{
        return model.getUsersFromSaveState()
                .observeOn(AndroidSchedulers.mainThread())
                .subscribe{
                    list->
                    view.setUsersList(list)
-                   view.setSearchName(model.currentName)
+                   view.setSearchName(model.getNameFromSavedState())
                }
+    }
+
+    private fun subscribe(subscription: Disposable){
+        disposables.add(subscription)
     }
 }

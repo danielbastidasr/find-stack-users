@@ -6,8 +6,9 @@ import io.reactivex.Maybe
 
 
 class ReactiveSaveState  {
-
-    private val FRAGMENT_TAG = "ReactiveSaveStateFragment"
+    companion object {
+        private const val FRAGMENT_BUNDLE = "REACTIVE_SAVED_STATE"
+    }
 
     fun getSavedState(activity: Activity): Maybe<Bundle> {
 
@@ -19,12 +20,6 @@ class ReactiveSaveState  {
         }
     }
 
-
-    fun getSavedStateDirect(activity: Activity): Bundle? {
-        return getFragment(activity).getState()
-    }
-
-
     fun updateSaveState(activity: Activity, updateStateAction: BundleAction) {
         getFragment(activity).updateState(updateStateAction)
     }
@@ -32,14 +27,18 @@ class ReactiveSaveState  {
     private fun getFragment(activity: Activity): SaveStateFragment {
         val fragmentManager = activity.fragmentManager
         val intentFragment: SaveStateFragment
-        val fragment = fragmentManager.findFragmentByTag(FRAGMENT_TAG)
+        val fragment = fragmentManager.findFragmentByTag(FRAGMENT_BUNDLE)
         if (fragment == null) {
             intentFragment = SaveStateFragment()
-            fragmentManager.beginTransaction().add(intentFragment, FRAGMENT_TAG).commitAllowingStateLoss()
+            fragmentManager.beginTransaction().add(intentFragment, FRAGMENT_BUNDLE).commitAllowingStateLoss()
         } else {
             intentFragment = fragment as SaveStateFragment
         }
         return intentFragment
+    }
+
+    private fun getSavedStateDirect(activity: Activity): Bundle? {
+        return getFragment(activity).getState()
     }
 }
 

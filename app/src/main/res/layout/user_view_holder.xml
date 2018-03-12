@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="3dp"
     card_view:cardCornerRadius="5dp"
-    android:elevation="30dp"
     >
 
     <!-- Information-->
@@ -19,21 +18,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin"
-            android:layout_marginRight="@dimen/margin"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginEnd="@dimen/margin"
             android:id="@+id/card_user_reputation"
             android:layout_gravity="center"
-            android:textSize="13dp"
+            android:textSize="13sp"
             android:textColor="#000"
-            android:text="0223339"
             android:textStyle="normal|bold" />
         <!-- User Name-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#484848"
-            android:textSize="15dp"
-            android:text="My Name is Daniel"
+            android:textSize="15sp"
             android:id="@+id/card_user_name"
             android:layout_gravity="center"
             android:gravity="center"
